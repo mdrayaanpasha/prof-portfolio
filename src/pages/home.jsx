@@ -109,7 +109,6 @@ const Portfolio = () => {
 
         <div className="mt-20 border-t border-gray-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between text-sm opacity-50">
           <p>&copy; 2025 Mohammed Rayaan Pasha.</p>
-          <p>Designed with 🍋 & React.</p>
         </div>
       </footer>
 
