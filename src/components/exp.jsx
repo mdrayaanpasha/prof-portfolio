@@ -1,10 +1,45 @@
 import React from 'react';
-import { Briefcase, Calendar, ArrowRight } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 
 const Experience = () => {
   const experiences = [
     {
+      id: 0,
+      role: "Software Developer Intern (Backend)",
+      company: "Manaverse",
+      type: "Backend / Infrastructure",
+      duration: "Jun 2026 — Present",
+      location: "Remote",
+      description:
+        "Built CI/CD pipelines, provisioned DigitalOcean infra, and containerized services to enable zero-downtime releases and dev/prod parity.",
+      achievements: [
+        "Built CI/CD pipelines for automated production deploys.",
+        "Provisioned DigitalOcean infra (SSL, Nginx reverse proxy, DNS) for zero-downtime releases.",
+        "Containerized services with Docker for dev/prod parity.",
+        "Integrated API-layer content moderation for platform safety compliance."
+      ],
+      tags: ["CI/CD", "Docker", "DigitalOcean", "Nginx"],
+      highlight: "Infra · Deploys"
+    },
+    {
       id: 1,
+      role: "Backend Developer Intern",
+      company: "LeXi AI",
+      type: "AI / Legal Tech",
+      duration: "2026",
+      location: "Bengaluru, India",
+      description:
+        "Built REST APIs and mobile features for an AI legal platform — litigation workspace, contract review, and team management.",
+      achievements: [
+        "Designed and implemented REST endpoints consumed by React Native clients.",
+        "Integrated AI chat features and contract-review pipelines.",
+        "Worked on authentication and team management features for mobile apps."
+      ],
+      tags: ["React Native", "Django", "APIs"],
+      highlight: "AI · Legal"
+    },
+    {
+      id: 2,
       role: "Full Stack Developer Intern",
       company: "Gauge RO",
       type: "WaterTech Startup",
@@ -20,7 +55,7 @@ const Experience = () => {
       highlight: "-23% Infra Costs" // Key metric for the 'badge'
     },
     {
-      id: 2,
+      id: 3,
       role: "Full Stack Developer Intern",
       company: "Royal & Co",
       type: "Software Solutions",
@@ -38,86 +73,105 @@ const Experience = () => {
   ];
 
   return (
-    <section className="py-32 px-6 bg-[#121212] text-[#E0E0E0] border-t border-gray-900">
-      <div className="max-w-7xl mx-auto">
-        
-        <div className="flex flex-col lg:flex-row gap-16">
-          {/* --- Left Column: Header (Sticky) --- */}
-          <div className="lg:w-1/3">
-            <div className="sticky top-32">
-              <h2 className="text-6xl font-black uppercase mb-6 tracking-tight">
-                Career<br />History
-              </h2>
-              <p className="text-xl opacity-60 leading-relaxed">
-                Engineering distinct solutions for startups and software firms. 
-                Focusing on <span className="text-[#FCD53F]">measurable impact</span> and backend optimization.
-              </p>
-              
-              <div className="mt-12 hidden lg:block">
-                <Briefcase size={48} className="text-[#FCD53F] opacity-20" />
-              </div>
-            </div>
+    <section className="px-6 py-32 text-[#E7E9EA] sm:px-10">
+      <div className="mx-auto w-full max-w-4xl">
+        <div className="mb-10 max-w-2xl">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="h-px w-10 bg-linear-to-r from-[#4FD1A5] to-transparent" />
+            <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-[#4FD1A5]">
+              experience
+            </span>
           </div>
 
-          {/* --- Right Column: The Timeline --- */}
-          <div className="lg:w-2/3 flex flex-col gap-12">
+          <h2 className="font-mono text-[32px] font-semibold tracking-tight sm:text-[44px]">
+            Selected roles
+          </h2>
+          <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[#8A9099] sm:text-[18px]">
+            A recruiter-friendly chronology with the essentials up front: role,
+            company, dates, scope, and a short list of outcomes.
+          </p>
+        </div>
+
+        <div className="relative">
+          <div className="absolute left-3 top-2 bottom-2 hidden w-px bg-[#262B31] lg:block" />
+
+          <div className="space-y-6">
             {experiences.map((exp) => (
-              <div 
-                key={exp.id} 
-                className="group relative bg-[#1E1E1E] p-8 md:p-12 rounded-3xl border border-gray-800 transition-all duration-300 hover:border-[#FCD53F] hover:-translate-y-1"
+              <article
+                key={`${exp.company}-${exp.duration}`}
+                className="relative rounded-3xl border border-[#262B31] bg-[#14171B] p-6 transition-all duration-300 hover:border-[#4FD1A5] sm:p-8"
               >
-                {/* Impact Badge (Absolute) */}
-                <div className="absolute top-8 right-8 bg-[#FCD53F] text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider hidden md:block">
-                  {exp.highlight}
+                <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 hidden h-6 w-6 items-center justify-center rounded-full border border-[#262B31] bg-[#0B0D10] lg:flex">
+                      <span className="h-2 w-2 rounded-full bg-[#4FD1A5]" />
+                    </div>
+
+                    <div>
+                      <div className="flex items-center gap-3 text-[12px] uppercase tracking-[0.16em] text-[#8A9099]">
+                        <Calendar size={13} />
+                        <span>{exp.duration}</span>
+                      </div>
+                      <h3 className="mt-3 font-mono text-[22px] font-semibold text-[#E7E9EA] sm:text-[26px]">
+                        {exp.company}
+                      </h3>
+                      <p className="mt-2 text-[16px] text-[#8A9099] sm:text-[17px]">
+                        <span className="font-mono text-[#E7E9EA]">
+                          {exp.role}
+                        </span>{" "}
+                        <span className="mx-2 text-[#262B31]">·</span>
+                        <span className="uppercase tracking-[0.04em]">
+                          {exp.type}
+                        </span>
+                        <span className="mx-2 text-[#262B31]">·</span>
+                        <span>{exp.location}</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-full border border-[#262B31] px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-[#4FD1A5]">
+                    {exp.highlight}
+                  </div>
                 </div>
 
-                {/* Header Info */}
-                <div className="mb-8">
-                  <div className="flex items-center gap-3 text-sm font-mono opacity-50 mb-2 uppercase tracking-widest">
-                    <Calendar size={14} />
-                    <span>{exp.duration}</span>
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-1 group-hover:text-[#FCD53F] transition-colors">
-                    {exp.company}
-                  </h3>
-                  <div className="text-lg font-medium text-gray-400 flex flex-wrap gap-2 items-center">
-                    {exp.role} 
-                    <span className="w-1 h-1 bg-gray-600 rounded-full"></span> 
-                    <span className="text-sm opacity-60">{exp.type}</span>
-                  </div>
-                </div>
+                <p className="max-w-3xl text-[16px] leading-relaxed text-[#8A9099] sm:text-[17px]">
+                  {exp.description}
+                </p>
 
-                {/* Achievements List */}
-                <ul className="space-y-4 mb-8">
-                  {exp.achievements.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="mt-1.5 min-w-[6px] h-[6px] bg-[#FCD53F] rounded-full" />
-                      <span className="leading-relaxed opacity-90">
+                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {exp.achievements.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 rounded-2xl border border-[#262B31] bg-[#0F1216] px-4 py-3"
+                    >
+                      <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#4FD1A5]" />
+                      <span className="text-[15px] leading-relaxed text-[#E7E9EA]">
                         {item}
                       </span>
                     </li>
                   ))}
                 </ul>
 
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-gray-800">
-                  {exp.tags.map(tag => (
-                    <span key={tag} className="text-xs font-mono border border-gray-700 rounded px-2 py-1 text-gray-400">
+                <div className="mt-6 flex flex-wrap gap-2 border-t border-[#262B31] pt-6">
+                  {exp.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-[#262B31] px-3 py-1 font-mono text-[12px] uppercase tracking-[0.08em] text-[#8A9099]"
+                    >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </div>
+              </article>
             ))}
-
-            {/* Resume Download CTA */}
-            <a 
-              href="https://drive.google.com/file/d/1PrnVpdg4d8i5lNjX5W72G_Qfm4UWcqLV/view?usp=sharing" 
-              className="inline-flex items-center gap-4 text-[#FCD53F] font-bold uppercase tracking-widest hover:translate-x-2 transition-transform w-fit"
-            >
-              Download Full Resume <ArrowRight size={20} />
-            </a>
           </div>
+
+          <a
+            href="https://drive.google.com/file/d/1PrnVpdg4d8i5lNjX5W72G_Qfm4UWcqLV/view?usp=sharing"
+            className="mt-8 inline-flex items-center gap-3 font-mono text-[13px] uppercase tracking-[0.16em] text-[#8A9099] transition-colors hover:text-[#4FD1A5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4FD1A5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10]"
+          >
+            Download full resume <ArrowRight size={18} />
+          </a>
         </div>
       </div>
     </section>

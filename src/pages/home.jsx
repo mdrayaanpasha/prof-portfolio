@@ -3,6 +3,8 @@ import { Mail, Github, Linkedin, Terminal, ArrowDown } from 'lucide-react';
 import Experience from '../components/exp';
 import Projects from '../components/projects';
 import Skills from '../components/skills';
+import Cover from "../components/cover";
+import Backend from '../components/backend';
 
 const Portfolio = () => {
 
@@ -23,38 +25,10 @@ const Portfolio = () => {
       </nav>
 
       {/* --- Hero Section --- */}
-      <header className="relative min-h-screen flex flex-col justify-center px-6 pt-20">
-        <div className="max-w-7xl mx-auto w-full">
-          <h1 className="text-[10vw] leading-[0.9] font-black tracking-tighter uppercase mb-8">
-            I'm <span className="text-[#FCD53F]">Rayaan</span>.<br />
-            I <span className="inline-block border-4 border-[#FCD53F] rounded-full px-4 italic text-[8vw] hover:bg-[#FCD53F] hover:text-black transition-colors duration-300">Architect</span> <br/>
-            Distributed Systems
-          </h1>
-          
-          <div className="flex flex-col md:flex-row gap-6 md:items-end justify-between mt-12 border-t border-gray-800 pt-8">
-            <p className="max-w-md text-xl opacity-70">
-              Full Stack Developer & System Design Enthusiast based in Bengaluru. 
-              Building fault-tolerant, event-driven architectures that scale.
-            </p>
-            <div className="animate-bounce">
-              <p className="flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-[#FCD53F]">
-                Scroll for Impact <ArrowDown size={16} />
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Cover />
 
-      {/* --- Infinite Marquee --- */}
-      <div className="bg-[#FCD53F] text-black py-4 overflow-hidden whitespace-nowrap border-y-4 border-black rotate-1 scale-105 transform origin-left z-10 relative">
-        <div className="inline-flex animate-scroll">
-          {[...Array(10)].map((_, i) => (
-            <span key={i} className="text-4xl font-black uppercase mx-8">
-              Microservices • Kafka • Docker • System Design •
-            </span>
-          ))}
-        </div>
-      </div>
+      <Backend />
+
 
       {/* --- Main Content Components --- */}
       <div id="experience">
@@ -65,24 +39,7 @@ const Portfolio = () => {
 
       <Skills/>
 
-      {/* --- Philosophy / Lemon Section --- */}
-      <section className="py-32 bg-[#FCD53F] text-black">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="mb-8 inline-block p-4 border-4 border-black rounded-full bg-white">
-            <span className="text-4xl">🍋</span>
-          </div>
-          <h2 className="text-4xl md:text-7xl font-black leading-tight mb-8">
-            "When life gives you lemons,<br/>
-            write a <span className="underline decoration-wavy decoration-black/30">script</span> to extract the seeds."
-          </h2>
-          <p className="text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-            I don't just build web apps; I engineer resilient systems. Whether it's 
-            <span className="font-bold"> cutting infrastructure costs by 23%</span> or 
-            <span className="font-bold"> reducing latency to sub-50ms</span>, 
-            I believe in code that performs under pressure.
-          </p>
-        </div>
-      </section>
+
 
       {/* --- Footer / Contact --- */}
       <footer id="contact" className="py-20 px-6 max-w-7xl mx-auto">

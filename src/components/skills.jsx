@@ -4,64 +4,77 @@ import { Terminal, Database, Layout, Cpu } from 'lucide-react';
 const Skills = () => {
   const skillCategories = [
     {
-      id: "languages",
-      label: "Languages",
-      icon: <Terminal size={20} className="text-[#FCD53F]" />,
-      items: ["Java", "Python", "JavaScript", "TypeScript", "SQL (PostgreSQL)"]
-    },
-    {
       id: "backend",
-      label: "Backend & Systems",
-      icon: <Cpu size={20} className="text-[#FCD53F]" />,
-      items: ["Node.js", "Express.js", "Apache Kafka", "RabbitMQ", "Redis"]
+      label: "Backend",
+      icon: <Terminal size={16} className="text-[#4FD1A5]" />,
+      items: ["Node.js", "Express.js", "Django", "REST API design"]
     },
     {
-      id: "frameworks",
-      label: "Frameworks & DB",
-      icon: <Database size={20} className="text-[#FCD53F]" />,
-      items: ["React.js", "Next.js", "Prisma", "MongoDB", "MySQL"]
+      id: "messaging",
+      label: "Data & Messaging",
+      icon: <Database size={16} className="text-[#4FD1A5]" />,
+      items: ["Kafka", "RabbitMQ", "Redis", "PostgreSQL", "Prisma"]
+    },
+    {
+      id: "ai",
+      label: "AI / LLM",
+      icon: <Cpu size={16} className="text-[#4FD1A5]" />,
+      items: ["LangChain", "LangGraph", "NL-to-SQL"]
     },
     {
       id: "tools",
-      label: "DevOps & Tools",
-      icon: <Layout size={20} className="text-[#FCD53F]" />,
-      items: ["Docker", "Git", "Linux/Unix Shell", "Postman", "OpenAI API"]
+      label: "Infra",
+      icon: <Layout size={16} className="text-[#4FD1A5]" />,
+      items: ["Docker", "Nginx", "DigitalOcean", "CI/CD", "GCP", "K8s", "ArgoCD", "GitHub Actions"]
     }
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#121212] text-white border-t border-gray-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-5xl font-black uppercase tracking-tighter mb-4">
-            Technical<br/>Arsenal
+    <section className="px-6 py-32 text-[#E7E9EA] sm:px-10">
+      <div className="mx-auto w-full max-w-4xl">
+        <div className="mb-10 max-w-2xl">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="h-px w-10 bg-linear-to-r from-[#4FD1A5] to-transparent" />
+            <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-[#4FD1A5]">
+              skills
+            </span>
+          </div>
+
+          <h2 className="font-mono text-[32px] font-semibold tracking-tight sm:text-[44px]">
+            Technical stack
           </h2>
+          <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[#8A9099] sm:text-[18px]">
+            Grouped by what recruiters scan for first: backend scope, data and
+            messaging, AI/LLM work, and infrastructure.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid gap-6 lg:grid-cols-2">
           {skillCategories.map((category) => (
-            <div 
-              key={category.id} 
-              className="p-6 rounded-2xl bg-[#1E1E1E] border border-gray-800 hover:border-[#FCD53F] transition-colors duration-300 group"
+            <article
+              key={category.id}
+              className="rounded-3xl border border-[#262B31] bg-[#14171B] p-6 transition-all duration-300 hover:border-[#4FD1A5] sm:p-8"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded bg-black/50 border border-gray-700 group-hover:border-[#FCD53F] transition-colors">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[#262B31] bg-[#0F1216]">
                   {category.icon}
                 </div>
-                <h3 className="font-bold text-lg uppercase tracking-wider">{category.label}</h3>
+                <h3 className="font-mono text-[20px] font-semibold text-[#E7E9EA]">
+                  {category.label}
+                </h3>
               </div>
-              
+
               <div className="flex flex-wrap gap-2">
                 {category.items.map((skill) => (
-                  <span 
-                    key={skill} 
-                    className="px-3 py-1.5 text-sm font-mono text-gray-300 bg-black/40 border border-gray-700 rounded hover:text-[#FCD53F] hover:border-[#FCD53F]/50 transition-colors cursor-default"
+                  <span
+                    key={skill}
+                    className="rounded-full border border-[#262B31] px-3 py-1 font-mono text-[12px] uppercase tracking-[0.08em] text-[#8A9099]"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

@@ -1,139 +1,153 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 
 const Projects = () => {
-  const [activeProject, setActiveProject] = useState(null);
-
-  // --- CONFIGURATION: Update these paths with your actual images ---
   const projects = [
     {
       id: 1,
-      title: "Distributed Harry Potter Universe",
-      category: "Apache Kafka · Docker · MERN",
-      year: "'25",
-      // Short description for the list view
-      summary: "Real-time state synchronization across 5 core services.",
-      // Detailed description showing the 'Story'
-      details: "Architected a fault-tolerant Kafka pipeline achieving sub-50ms latency. Scaled to handle 5x throughput during stress testing without data loss.",
-      links: { source: "https://github.com/mdrayaanpasha/distributed-harry-potter-universe", demo: "#" },
-      image: "https://ik.imagekit.io/yylpuqff5/Portfolio/harry.jpg", // REPLACE THIS: e.g., require('./assets/harry-potter.png')
-      color: "bg-amber-600" // Fallback color if image fails
+      title: "Quantiva",
+      subtitle: "Distributed Stock Analysis Engine",
+      year: "2025",
+      category: "RabbitMQ · Redis · Microservices",
+      summary:
+        "RabbitMQ RPC fan-out architecture with an orchestrator dispatching concurrent analysis jobs to three independent microservices via dedicated queues, correlated by UUID.",
+      details:
+        "A Redis cache-aside layer cuts repeat Yahoo Finance fetches from roughly 750ms to sub-10ms, keeping repeated analysis paths fast under load.",
+      impact: [
+        "RPC fan-out across 3 services with UUID correlation",
+        "Cache-aside layer for repeat requests",
+        "Sub-10ms repeat fetches after warm cache"
+      ],
+      tags: ["RabbitMQ", "Redis", "Node.js", "Microservices"],
+      links: {
+        live: "#",
+        github: "https://github.com/mdrayaanpasha/quantiva_2.0"
+      }
     },
     {
       id: 2,
-      title: "Sitcom Simulation (Friends Edition)",
-      category: "RabbitMQ · LLM Agents · Event-Driven",
-      year: "'25",
-      summary: "Stateless AI agents mimicking Friends characters.",
-      details: "Built a distributed system where LLM agents hold context-aware conversations (mimicking Ross, Rachel, etc.) via RabbitMQ. Uses a non-blocking event bus to handle complex agent interactions.",
-      links: { source: "https://github.com/mdrayaanpasha/Friends_Distributed_Simulation", demo: "#" },
-      image: "https://ik.imagekit.io/yylpuqff5/Portfolio/friends.jpg", // REPLACE THIS: e.g., require('./assets/friends-sim.png')
-      color: "bg-blue-600"
-    },
-    {
-      id: 3,
-      title: "Distributed Portfolio Manager",
-      category: "Redis · Algorithms · Microservices",
-      year: "'25",
-      summary: "Consensus Voting Engine for market prediction.",
-      details: "Boosted efficiency by 56% using Redis caching. Features a 'Consensus Voting Engine' that aggregates signals from Regression and Sentiment Analysis models to outperform baseline forecasts.",
-      links: { source: "https://github.com/mdrayaanpasha/quantiva_2.0", demo: "#" },
-      image: "https://ik.imagekit.io/yylpuqff5/Portfolio/fin.jpg", // REPLACE THIS: e.g., require('./assets/portfolio.png')
-      color: "bg-emerald-600"
+      title: "Arbit Finance",
+      subtitle: "Real-Time Financial Data Pipeline",
+      year: "2026",
+      category: "Kafka · Node.js · Cron Workers",
+      summary:
+        "An event-driven pipeline ingesting OHLCV data on a one-minute cron through Kafka, processed by isolated Node.js microservices.",
+      details:
+        "Anomaly detection runs with a 5% price-delta threshold, while SMA, EMA, and RSI computations run as independent Kafka consumers. Yahoo Finance history seeding keeps the system resilient on cold start.",
+      impact: [
+        "One-minute cron ingestion into Kafka",
+        "Independent consumers for anomaly detection and indicators",
+        "History seeding for cold-start resilience"
+      ],
+      tags: ["Kafka", "Node.js", "OHLCV", "Indicators"],
+      links: {
+        live: "#",
+        github: "#"
+      }
     }
   ];
 
   return (
-    <section id="work" className="py-32 px-6 max-w-7xl mx-auto bg-[#121212] text-white">
-      
-      {/* --- Section Header --- */}
-      <div className="flex items-end justify-between mb-20 border-b border-gray-800 pb-8">
-        <div>
-          <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4">
-            Selected<br/>Work
+    <section id="work" className="px-6 py-32 text-[#E7E9EA] sm:px-10">
+      <div className="mx-auto w-full max-w-4xl">
+        <div className="mb-10 max-w-2xl">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="h-px w-10 bg-linear-to-r from-[#4FD1A5] to-transparent" />
+            <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-[#4FD1A5]">
+              projects
+            </span>
+          </div>
+
+          <h2 className="font-mono text-[32px] font-semibold tracking-tight sm:text-[44px]">
+            Selected work
           </h2>
-          <p className="text-gray-400 max-w-lg text-lg">
-            Engineering distributed systems with a focus on fault tolerance and AI-driven logic.
+          <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[#8A9099] sm:text-[18px]">
+            Two production-style systems with a clear architecture story: what
+            the pipeline does, how data moves, and what stays fast under load.
           </p>
         </div>
-        <span className="text-xs font-mono hidden md:block text-[#FCD53F] opacity-80 uppercase tracking-widest mb-2">
-          [ Hover to Preview ]
-        </span>
-      </div>
 
-      {/* --- Projects List --- */}
-      <div className="flex flex-col">
-        {projects.map((project) => (
-          <div 
-            key={project.id}
-            className="group relative border-t border-gray-800 py-16 flex flex-col md:flex-row md:items-start justify-between transition-all hover:bg-[#1a1a1a] px-4 cursor-default"
-            onMouseEnter={() => setActiveProject(project.id)}
-            onMouseLeave={() => setActiveProject(null)}
-          >
-            {/* Left Side: Text Content */}
-            <div className="z-10 transition-transform duration-500 group-hover:translate-x-4 md:w-2/3">
-              {/* Tech Stack Badge */}
-              <div className="flex items-center gap-3 text-xs font-bold font-mono text-[#FCD53F] mb-4 uppercase tracking-widest">
-                <span>{project.year}</span>
-                <span className="w-8 h-[1px] bg-[#FCD53F]"></span>
-                <span>{project.category}</span>
-              </div>
-              
-              {/* Title */}
-              <h3 className="text-4xl md:text-6xl font-black mb-6 text-white group-hover:text-[#FCD53F] transition-colors leading-tight">
-                {project.title}
-              </h3>
-              
-              {/* Description Block */}
-              <div className="max-w-xl">
-                <p className="text-xl font-medium text-white mb-3">
-                  {project.summary}
-                </p>
-                <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                  {project.details}
-                </p>
-              </div>
-
-              {/* Links (Visible on Hover/Mobile) */}
-              <div className="flex gap-6 mt-8 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                <a href={project.links.source} className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider hover:text-[#FCD53F] border-b border-transparent hover:border-[#FCD53F]">
-                  <Github size={16} /> Source Code
-                </a>
-              
-              </div>
-            </div>
-
-            {/* Right Side: Arrow Icon */}
-            <div className="hidden md:block mt-6 opacity-20 group-hover:opacity-100 group-hover:text-[#FCD53F] transition-all duration-300 transform group-hover:translate-x-2 z-10">
-              <ArrowUpRight size={64} />
-            </div>
-
-            {/* --- FLOATING IMAGE REVEAL --- */}
-            <div 
-              className={`fixed z-50 pointer-events-none transition-all duration-500 ease-out hidden lg:block
-                w-[500px] h-[320px] rounded-xl overflow-hidden shadow-2xl border border-white/10
-                ${activeProject === project.id ? 'opacity-100 scale-100 rotate-2' : 'opacity-0 scale-90 rotate-0'}
-              `}
-              // Dynamic positioning style: tracks cursor roughly or fixed to right side
-              style={{ 
-                right: '10%', 
-                top: '50%', 
-                transform: `translateY(-50%) rotate(${activeProject === project.id ? '2deg' : '0deg'}) scale(${activeProject === project.id ? 1 : 0.9})`
-              }}
+        <div className="space-y-6">
+          {projects.map((project) => (
+            <article
+              key={project.id}
+              className="rounded-3xl border border-[#262B31] bg-[#14171B] p-6 transition-all duration-300 hover:border-[#4FD1A5] sm:p-8"
             >
-              {/* Actual Image */}
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover"
-              />
-              
-              {/* Overlay for text legibility if needed */}
-              <div className="absolute inset-0 bg-black/10"></div>
-            </div>
+              <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-3 text-[12px] uppercase tracking-[0.16em] text-[#8A9099]">
+                    <span>{project.year}</span>
+                    <span className="text-[#262B31]">·</span>
+                    <span>{project.category}</span>
+                  </div>
+                  <h3 className="mt-3 font-mono text-[22px] font-semibold text-[#E7E9EA] sm:text-[26px]">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-[16px] uppercase tracking-[0.04em] text-[#8A9099] sm:text-[17px]">
+                    {project.subtitle}
+                  </p>
+                </div>
 
-          </div>
-        ))}
+                <div className="rounded-full border border-[#262B31] px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-[#4FD1A5]">
+                  production system
+                </div>
+              </div>
+
+              <p className="max-w-3xl text-[16px] leading-relaxed text-[#8A9099] sm:text-[17px]">
+                {project.summary}
+              </p>
+
+              <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-[#E7E9EA] sm:text-[17px]">
+                {project.details}
+              </p>
+
+              <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+                {project.impact.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-2xl border border-[#262B31] bg-[#0F1216] px-4 py-3 text-[15px] leading-relaxed text-[#E7E9EA]"
+                  >
+                    <span className="mr-2 inline-block h-2 w-2 rounded-full bg-[#4FD1A5] align-middle" />
+                    <span className="align-middle">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 flex flex-wrap gap-2 border-t border-[#262B31] pt-6">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[#262B31] px-3 py-1 font-mono text-[12px] uppercase tracking-[0.08em] text-[#8A9099]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-4">
+                <a
+                  href={project.links.live}
+                  className="inline-flex items-center gap-2 rounded-md border border-[#262B31] bg-[#0F1216] px-4 py-2 font-mono text-[13px] uppercase tracking-[0.12em] text-[#E7E9EA] transition-colors hover:border-[#4FD1A5] hover:text-[#4FD1A5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4FD1A5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10]"
+                >
+                  Live <ExternalLink size={16} />
+                </a>
+                <a
+                  href={project.links.github}
+                  className="inline-flex items-center gap-2 rounded-md border border-[#262B31] bg-[#0F1216] px-4 py-2 font-mono text-[13px] uppercase tracking-[0.12em] text-[#E7E9EA] transition-colors hover:border-[#4FD1A5] hover:text-[#4FD1A5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4FD1A5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10]"
+                >
+                  <Github size={16} /> GitHub
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <a
+          href="#contact"
+          className="mt-8 inline-flex items-center gap-3 font-mono text-[13px] uppercase tracking-[0.16em] text-[#8A9099] transition-colors hover:text-[#4FD1A5] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4FD1A5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0D10]"
+        >
+          Discuss a system <ArrowUpRight size={18} />
+        </a>
       </div>
     </section>
   );
